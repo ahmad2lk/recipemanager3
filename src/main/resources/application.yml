@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/recipe_managegment_data
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: letmein
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    baseline-on-migrate: true
+    enabled: true
+    baseline-description: "init"
+    baseline-version: 0
+    user: postgres
+    password: letmein
+
+
+
+
+
+application:
+  security:
+    jwt:
+      secret-key:  ZtxVxRL9HkoEcoLHu1oCkRoiSihFuLtKV++l1HYVHZXjJudkW7O6AxTwykZa90BnniCqK5lK1HDkJbNkwt6pS0aEvfYkTQWUdNz5tt/ZtkIG16EkScXqwXl4uO0Jbmooyev9zKybhwePWgwwOTnARUVzCE8SQTU2rVLqN587WZsyOcwWFshy2UsP7TZm4a6IMjzFGroY4lY82giK662655+x0z4rYlX7fQqFySwGFLMRiMB+Ntsoy1pEiQggJ3xvdj90A5pSn4jDJ5ZhJRyTH1BjrNIudai2JHOsey/ayE9MAlkqaTnCf8bLIuI0NOOPYKfYzisdw2gJ2PLNxoQ9bJWaLUmy6kqr4k1uxAy4GL8=
+
+
+      expiration: 86400000 # a day
+      refresh-token:
+          expiration: 604800000 # 7 days
