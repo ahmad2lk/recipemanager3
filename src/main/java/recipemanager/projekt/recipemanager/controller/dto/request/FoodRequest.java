@@ -1,4 +1,4 @@
-package recipemanager.projekt.recipemanager.controller.request;
+package recipemanager.projekt.recipemanager.controller.dto.request;
 
 
 import lombok.AllArgsConstructor;
@@ -11,9 +11,10 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class InstructionRequest {
-
+public class FoodRequest {
 
     private Long id;
-    private String description;
+
+    private String consistency;
+    private String unit;
 }

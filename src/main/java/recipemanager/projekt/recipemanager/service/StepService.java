@@ -1,8 +1,8 @@
 package recipemanager.projekt.recipemanager.service;
 
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import recipemanager.projekt.recipemanager.controller.request.StepRequest;
 import recipemanager.projekt.recipemanager.exception.StepNotFoundException;
 
 import recipemanager.projekt.recipemanager.model.*;
@@ -12,17 +12,11 @@ import java.util.List;
 
 
 @Service
+@RequiredArgsConstructor
 public class StepService {
 
     private final StepRepo stepRepo;
 
-
-
-    public StepService(StepRepo stepRepo) {
-        this.stepRepo = stepRepo;
-
-
-    }
 
 
     public Step addStep(Step step) {
@@ -37,7 +31,8 @@ public class StepService {
     }
 
     public Step findStepById(Long id) {
-        return (Step) stepRepo.findStepById(id).orElseThrow(()
+        return (Step) stepRepo.findStepById(id)
+                .orElseThrow(()
                 -> new StepNotFoundException("Step by id " + id + "was not found "));
     }
 

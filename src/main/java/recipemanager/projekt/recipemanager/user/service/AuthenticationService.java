@@ -22,7 +22,9 @@ import recipemanager.projekt.recipemanager.user.repo.UserRepo;
 import recipemanager.projekt.recipemanager.user.tfa.TwoFactorAuthenticationService;
 
 import java.io.IOException;
-
+/**
+ * Dieser Service {@link AuthenticationService}behandelt die Benutzerauthentifizierung und -registrierung in der Anwendung.
+ */
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -32,8 +34,12 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final TwoFactorAuthenticationService tfaService;
 
-
-
+    /**
+     * Registriert einen neuen Benutzer in der Anwendung und gibt eine Authentifizierungsantwort zurück.
+     *
+     * @param request Das Registrierungsanfrageobjekt mit den Benutzerdaten.
+     * @return Die Authentifizierungsantwort mit JWT-Token und anderen Informationen.
+     */
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
                 .firstname(request.getFirstname())
@@ -44,11 +50,10 @@ public class AuthenticationService {
                 .mfaEnabled(request.isMfaEnabled())
                 .build();
 
-
         if (request.isMfaEnabled()) {
             user.setSecret(tfaService.generateNewSecret());
         }
-         repository.save(user);
+        repository.save(user);
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         return AuthenticationResponse.builder()
@@ -59,8 +64,12 @@ public class AuthenticationService {
                 .build();
     }
 
-
-
+    /**
+     * Authentifiziert einen Benutzer anhand der Anmeldeanfrage und gibt eine Authentifizierungsantwort zurück.
+     *
+     * @param request Die Anmeldeanfrage mit Benutzerdaten.
+     * @return Die Authentifizierungsantwort mit JWT-Token und anderen Informationen.
+     */
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -86,6 +95,13 @@ public class AuthenticationService {
                 .build();
     }
 
+    /**
+     * Aktualisiert das Zugriffstoken für einen Benutzer anhand des Aktualisierungsanfrageobjekts.
+     *
+     * @param request  Das HTTP-Anfrage objekt.
+     * @param response Das HTTP-Antwortobjekt.
+     * @throws IOException Wenn ein Fehler beim Lesen/Schreiben von Daten auftritt.
+     */
     public void refreshToken(
             HttpServletRequest request,
             HttpServletResponse response
@@ -113,16 +129,21 @@ public class AuthenticationService {
         }
     }
 
+    /**
+     * Überprüft den vom Benutzer eingegebenen Verifizierungscode und gibt eine Authentifizierungsantwort zurück.
+     *
+     * @param verificationRequest Die Verifizierungsanfrage mit dem eingegebenen Code.
+     * @return Die Authentifizierungsantwort mit JWT-Token und MFA-Status.
+     */
     public AuthenticationResponse verifyCode(
             VerificationRequest verificationRequest
     ) {
         User user = repository
                 .findByEmail(verificationRequest.getEmail())
                 .orElseThrow(() -> new EntityNotFoundException(
-                        String.format("No user found with %S", verificationRequest.getEmail()))
+                        String.format("No user found with  %S", verificationRequest.getEmail()))
                 );
         if (tfaService.isOtpNotValid(user.getSecret(), verificationRequest.getCode())) {
-
             throw new BadCredentialsException("Code is not correct");
         }
         var jwtToken = jwtService.generateToken(user);

@@ -1,5 +1,6 @@
 package recipemanager.projekt.recipemanager.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/cookMixInstruction")
 @PreAuthorize("hasRole('ADMIN')")
 public class CookMixInstructionController {
@@ -20,10 +22,7 @@ public class CookMixInstructionController {
 
     private final CookMixInstructionService cookMixInstructionService;
 
-    public CookMixInstructionController(CookMixInstructionService cookMixInstructionService) {
 
-        this.cookMixInstructionService = cookMixInstructionService;
-    }
 
     @GetMapping("/all")
     public ResponseEntity<List<CookMixInstruction>> getAllCookMixInstructions() {

@@ -8,13 +8,22 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Service;
 import recipemanager.projekt.recipemanager.user.token.TokenRepo;
-
+/**
+ * Dieser Service behandelt den Logout-Vorgang für Benutzer.
+ */
 @Service
 @RequiredArgsConstructor
 public class LogoutService implements LogoutHandler {
 
     private final TokenRepo tokenRepo;
 
+    /**
+     * Loggt den Benutzer aus, indem das JWT-Token ungültig gemacht wird.
+     *
+     * @param request        Das HttpServletRequest-Objekt der aktuellen Anfrage.
+     * @param response       Das HttpServletResponse-Objekt für die Antwort.
+     * @param authentication Die Authentifizierungsinstanz des Benutzers.
+     */
     @Override
     public void logout(
             HttpServletRequest request,
@@ -23,7 +32,7 @@ public class LogoutService implements LogoutHandler {
     ) {
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
-        if (authHeader == null ||!authHeader.startsWith("Bearer ")) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             return;
         }
         jwt = authHeader.substring(7);

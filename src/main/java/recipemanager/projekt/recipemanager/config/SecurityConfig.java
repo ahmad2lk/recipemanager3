@@ -14,7 +14,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
-
+/**
+ * Diese Klasse konfiguriert die Sicherheitseinstellungen für die Anwendung.
+ */
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -24,55 +26,42 @@ import org.springframework.security.web.authentication.logout.LogoutHandler;
         jsr250Enabled = true)
 public class SecurityConfig {
 
-
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final LogoutHandler logoutHandler;
-    private  final AuthenticationProvider authenticationProvider;
+    private final AuthenticationProvider authenticationProvider;
 
-
-
+    /**
+     * Konfiguriert die Sicherheitsfilterkette für HTTP-Anfragen.
+     *
+     * @param http Die HttpSecurity-Instanz zum Konfigurieren der Sicherheit.
+     * @return Die konfigurierte SecurityFilterChain.
+     * @throws Exception Wenn ein Fehler bei der Konfiguration auftritt.
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .cors()
+                .cors() // Konfiguriere Cross-Origin Resource Sharing (CORS)
                 .and()
-                .csrf()
+                .csrf() // Deaktiviere CSRF-Schutz
                 .disable()
-                .authorizeHttpRequests()
+                .authorizeHttpRequests() // Konfiguriere die Autorisierung der HTTP-Anfragen
 
-                        .requestMatchers("/api/v1/auth/**")
-                        .permitAll()
+                .requestMatchers("/api/v1/users/auth/**") // Ermögliche den Zugriff auf bestimmte Endpunkte ohne Authentifizierung
+                .permitAll()
 
-
-                        //.requestMatchers("/api/v1/admin/**")
-                      //  .hasAnyRole(ADMIN.name(),USER_READ.name())
-
-
-                       // .requestMatchers(GET, "/api/v1/admin/**").hasAnyAuthority(ADMIN_READ.name(),USER_READ.name())
-                      //  .requestMatchers(POST, "/api/v1/admin/**").hasAuthority(ADMIN_CREATE.name())
-                       // .requestMatchers(PUT, "/api/v1/admin/**").hasAuthority(ADMIN_UPDATE.name())
-                      //  .requestMatchers(DELETE, "/api/v1/admin/**").hasAuthority(ADMIN_DELETE.name())
-
-                     //   .requestMatchers( "/api/v1/user/**").hasRole(USER_READ.name())
-                      //  .requestMatchers(GET, "/api/v1/user/**").hasAuthority(USER_READ.name())
-
-                .anyRequest()
-                .authenticated()
+                .anyRequest() // Für alle anderen Anfragen
+                .authenticated() // Authentifizierung ist erforderlich
                 .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionManagement() // Konfiguriere die Session-Verwaltung
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Verwende zustandslose Sitzungen
                 .and()
-                .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .logout()
-                .logoutUrl("/api/v1/auth/logout")
-                .addLogoutHandler(logoutHandler)
-                .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
-        ;
+                .authenticationProvider(authenticationProvider) // Konfiguriere den AuthenticationProvider
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) // Füge den JwtAuthenticationFilter hinzu
+                .logout() // Konfiguriere den Logout
+                .logoutUrl("/api/v1/auth/logout") // Logout-Endpunkt
+                .addLogoutHandler(logoutHandler) // Füge den Logout-Handler hinzu
+                .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext()); // Konfiguriere den Logout-Erfolg
+
         return http.build();
     }
-
-
-
-
 }

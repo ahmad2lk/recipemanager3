@@ -1,10 +1,8 @@
-package recipemanager.projekt.recipemanager.controller.request;
+package recipemanager.projekt.recipemanager.controller.dto.request;
 
 import com.sun.jdi.request.StepRequest;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;

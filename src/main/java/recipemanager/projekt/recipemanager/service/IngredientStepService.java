@@ -1,7 +1,7 @@
 package recipemanager.projekt.recipemanager.service;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import recipemanager.projekt.recipemanager.exception.IngredientStepNotFoundException;
 import recipemanager.projekt.recipemanager.model.IngredientStep;
@@ -10,16 +10,14 @@ import recipemanager.projekt.recipemanager.repo.IngredientStepRepo;
 
 import java.util.List;
 
-@Service public class IngredientStepService {
+@Service
+@RequiredArgsConstructor
+public class IngredientStepService {
 
 
     private final IngredientStepRepo ingredientStepRepo;
 
 
-    @Autowired
-    public IngredientStepService(IngredientStepRepo ingredientStepRepo) {
-        this.ingredientStepRepo = ingredientStepRepo;
-    }
 
     public IngredientStep addIngredientStep(IngredientStep ingredientStep) {
 
@@ -34,7 +32,8 @@ import java.util.List;
     }
 
     public IngredientStep findIngredientStepById(Long id) {
-        return (IngredientStep) ingredientStepRepo.findIngredientStepById(id).orElseThrow(()
+        return (IngredientStep) ingredientStepRepo.findIngredientStepById(id)
+                .orElseThrow(()
                 -> new IngredientStepNotFoundException("IngredientStep by id " + id + "was not found "));
     }
 

@@ -1,4 +1,4 @@
-package recipemanager.projekt.recipemanager.controller.request;
+package recipemanager.projekt.recipemanager.controller.dto.request;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;

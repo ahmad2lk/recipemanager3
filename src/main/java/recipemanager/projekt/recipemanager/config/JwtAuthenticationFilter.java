@@ -15,7 +15,9 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import recipemanager.projekt.recipemanager.user.service.JwtService;
-
+/**
+ * Dieser Filter verarbeitet die Authentifizierung von Benutzern anhand eines JWT-Tokens.
+ */
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -23,6 +25,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
 
+    /**
+     * Diese Methode wird für jede HTTP-Anfrage aufgerufen und verarbeitet die JWT-Authentifizierung.
+     *
+     * @param request     Das HttpServletRequest-Objekt der aktuellen Anfrage.
+     * @param response    Das HttpServletResponse-Objekt für die Antwort.
+     * @param filterChain Der Filter-Chain, um die Anfrage fortzusetzen.
+     * @throws ServletException Wenn ein Fehler bei der Verarbeitung auftritt.
+     * @throws IOException      Wenn ein Fehler beim Lesen/Schreiben von Daten auftritt.
+     */
     @Override
     protected void doFilterInternal(
             @NonNull HttpServletRequest request,
@@ -30,13 +41,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
         if (request.getServletPath().contains("/api/v1/auth")) {
-            filterChain.doFilter(request,response);
+            filterChain.doFilter(request, response);
             return;
         }
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
         final String userEmail;
-        if (authHeader == null ||!authHeader.startsWith("Bearer ")) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }

@@ -6,7 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import recipemanager.projekt.recipemanager.user.model.User;
-
+/**
+ * Entitätsklasse, die Token-Informationen für die Authentifizierung und Autorisierung von Benutzern darstellt.
+ */
 @Data
 @Builder
 @NoArgsConstructor
