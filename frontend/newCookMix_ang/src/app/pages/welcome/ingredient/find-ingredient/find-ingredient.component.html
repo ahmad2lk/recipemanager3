@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="success-message-panel" *ngIf="message">
+    <div class="success-icon">&#10004;</div>
+    <div class="success-message">{{ message }}</div>
+  </div>
+
+  <!-- Find Ingredient Form -->
+  <h2>Find Ingredient by ID</h2>
+  <form>
+    <div class="form-group">
+      <label for="ingredientId">Ingredient ID</label>
+      <input
+        id="ingredientId"
+        name="ingredientId"
+        required
+        type="number"
+        [(ngModel)]="ingredientId"
+      >
+    </div>
+
+    <button type="button" (click)="findIngredient(ingredientId)">Find Ingredient</button>
+  </form>
+
+  <!-- Display Ingredient Details -->
+  <div class="ingredient-details" *ngIf="selectedIngredient.id">
+    <h3>Ingredient Details</h3>
+    <p>ID: {{ selectedIngredient.id }}</p>
+    <p>Quantity: {{ selectedIngredient.quantity }}</p>
+    <p>Unit: {{ selectedIngredient.unit }}</p>
+    <!-- Display more properties here -->
+  </div>
+</div>

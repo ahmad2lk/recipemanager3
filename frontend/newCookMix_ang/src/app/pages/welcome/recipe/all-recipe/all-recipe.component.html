@@ -1,0 +1,42 @@
+<div class="success-message-panel" *ngIf="message">
+  <div class="success-icon">&#10004;</div>
+  <div class="success-message" style="color: #228B22;">{{ message }}</div>
+</div>
+
+<div class="recipe-list"  style="background-image: url('/assets/bild.jpg');">
+  <div *ngFor="let recipe of recipes" class="recipe-card">
+    <p style="color: #333;"><strong>Id:</strong> {{ recipe.id }}</p>
+    <h2 style="color: #007ACC;">{{ recipe.designation }}</h2>
+
+    <h3 style="color: #007ACC;">Zutaten:</h3>
+    <ul>
+      <li *ngFor="let ingredient of recipe.ingredients">
+        <span style="color: #555;">{{ ingredient.id }} - {{ ingredient.quantity }} {{ ingredient.unit }}</span>
+      </li>
+    </ul>
+
+    <h3 style="color: #007ACC;">Schritte:</h3>
+    <ul>
+      <li *ngFor="let step of recipe.steps">
+        <p style="color: #333;"><strong>Step ID:</strong> {{ step.id }}</p>
+
+        <h4 style="color: #007ACC;">Anweisungen:</h4>
+        <ul>
+          <li *ngFor="let instruction of step.instructions">
+            <p style="color: #555;"><strong>ID:</strong> {{ instruction.id }}</p>
+            <p style="color: #333;"><strong>Beschreibung:</strong> {{ instruction.description }}</p>
+          </li>
+        </ul>
+
+        <h4 style="color: #061728;">Zutatenschritte:</h4>
+        <ul>
+          <li *ngFor="let ingredientStep of step.ingredientSteps">
+            <p style="color: #555;"><strong>ID:</strong> {{ ingredientStep.id }}</p>
+            <p style="color: #333;"><strong>Menge:</strong> {{ ingredientStep.quantity }} {{ ingredientStep.unit }}</p>
+            <p style="color: #333;"><strong>Präsentation:</strong> {{ ingredientStep.presentation }}</p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

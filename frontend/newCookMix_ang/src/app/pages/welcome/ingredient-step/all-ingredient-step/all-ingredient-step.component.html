@@ -1,0 +1,11 @@
+<div class="all-ingredient-steps">
+  <h2>All Ingredient Steps</h2>
+  <p>{{ message }}</p>
+  <ul>
+    <li *ngFor="let ingredientStep of allIngredientSteps">
+      <strong>Step ID:</strong> {{ ingredientStep.id }}<br>
+      <strong>Quantity:</strong> {{ ingredientStep.quantity }} {{ ingredientStep.unit }}<br>
+      <strong>Presentation:</strong> {{ ingredientStep.presentation }}
+    </li>
+  </ul>
+</div>

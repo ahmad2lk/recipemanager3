@@ -1,0 +1,25 @@
+<div class="step-list">
+  <div *ngFor="let step of steps" class="step-card">
+    <div class="step-card-content">
+      <p><strong>Step ID:</strong> {{ step.id }}</p>
+      <h2>Step Details</h2>
+
+      <h3>Ingredient Steps:</h3>
+      <ul>
+        <li *ngFor="let ingredientStep of step.ingredientSteps">
+          ID: {{ ingredientStep.id }}
+          Quantity: {{ ingredientStep.quantity }} {{ ingredientStep.unit }}
+          Presentation: {{ ingredientStep.presentation }}
+        </li>
+      </ul>
+
+      <h3>Instructions:</h3>
+      <ul>
+        <li *ngFor="let instruction of step.instructions">
+          ID: {{ instruction.id }}
+          Description: {{ instruction.description }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

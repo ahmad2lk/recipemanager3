@@ -1,0 +1,13 @@
+<div class="container">
+  <h2>All Ingredients</h2>
+  <div class="ingredient-list">
+    <div class="ingredient-card" *ngFor="let ingredient of ingredients">
+      <h3>Ingredient ID: {{ ingredient.id }}</h3>
+      <p>Quantity: {{ ingredient.quantity }}</p>
+      <p>Unit: {{ ingredient.unit }}</p>
+      <p>Recipe ID: {{ ingredient.recipe.id }}</p>
+      <p>Food ID: {{ ingredient.food.id }}</p>
+    </div>
+  </div>
+  <div class="message" *ngIf="message">{{ message }}</div>
+</div>

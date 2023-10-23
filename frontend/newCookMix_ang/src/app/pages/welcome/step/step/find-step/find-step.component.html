@@ -1,0 +1,32 @@
+<div class="find-step-container">
+  <h2>Find Step by ID</h2>
+
+  <div class="find-step-form">
+    <label for="stepId">Step ID:</label>
+    <input type="number" id="stepId" [(ngModel)]="stepId">
+    <button (click)="findStep()">Find Step</button>
+  </div>
+
+  <div class="step-details">
+    <h3>Step Details</h3>
+    <p><strong>ID:</strong> {{ step.id }}</p>
+    <h3>Ingredient Steps:</h3>
+    <ul>
+      <li *ngFor="let ingredientStep of step.ingredientSteps">
+        ID: {{ ingredientStep.id }}
+        Quantity: {{ ingredientStep.quantity }} {{ ingredientStep.unit }}
+        Presentation: {{ ingredientStep.presentation }}
+      </li>
+    </ul>
+
+    <h3>Instructions:</h3>
+    <ul>
+      <li *ngFor="let instruction of step.instructions">
+        ID: {{ instruction.id }}
+        Description: {{ instruction.description }}
+      </li>
+    </ul>
+  </div>
+
+  <p class="message">{{ message }}</p>
+</div>

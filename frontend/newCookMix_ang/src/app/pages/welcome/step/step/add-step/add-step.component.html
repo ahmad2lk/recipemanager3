@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="success-message-panel" *ngIf="message">
+    <div class="success-icon">&#10004;</div>
+    <div class="success-message">{{ message }}</div>
+  </div>
+
+  <h2>Add Step</h2>
+  <form (ngSubmit)="addStep()">
+    <div class="form-group">
+
+      <label for="ingredientSteps">Ingredient Steps</label>
+      <input id="ingredientSteps" name="ingredientSteps" required type="text" [(ngModel)]="newStep.ingredientSteps">
+    </div>
+    <div class="form-group">
+
+      <label for="instructions">Instructions</label>
+      <input id="instructions" name="instructions" required type="text" [(ngModel)]="newStep.instructions">
+    </div>
+    <div class="form-group">
+
+      <label for="recipeId">Recipe ID</label>
+      <input id="recipeId" name="recipeId" required type="number" [(ngModel)]="newStep.recipe.id">
+    </div>
+
+    <button type="submit">Add Step</button>
+  </form>
+</div>

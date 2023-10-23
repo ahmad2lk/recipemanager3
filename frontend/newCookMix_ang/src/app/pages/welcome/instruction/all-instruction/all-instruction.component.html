@@ -1,0 +1,20 @@
+<div class="instruction-container">
+  <h2>Instructions</h2>
+
+  <div class="message">{{ message }}</div>
+
+  <div class="instructions-list" *ngIf="instructions.length > 0">
+    <ul>
+      <li *ngFor="let instruction of instructions">
+        <p><strong>ID:</strong> {{ instruction.id }}</p>
+        <p><strong>Type:</strong> {{ instruction.type }}</p>
+        <p><strong>Description:</strong> {{ instruction.description }}</p>
+        <p><strong>Step ID:</strong> {{ instruction.step ? instruction.step.id : 'N/A' }}</p>
+      </li>
+    </ul>
+  </div>
+
+  <div class="no-instructions" *ngIf="instructions.length === 0">
+    No instructions found.
+  </div>
+</div>

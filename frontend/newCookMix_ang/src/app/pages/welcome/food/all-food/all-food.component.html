@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="success-message-panel" *ngIf="message">
+    <div class="success-icon">&#10004;</div>
+    <div class="success-message">{{ message }}</div>
+  </div>
+
+  <h2>All Foods</h2>
+
+  <ul class="food-list">
+    <li *ngFor="let food of allFood">
+      <div class="food-details">
+        <h3>ID: {{ food.id }}</h3>
+        <p>Consistency: {{ food.consistency }}</p>
+        <p>Unit: {{ food.unit }}</p>
+
+      </div>
+    </li>
+  </ul>
+</div>

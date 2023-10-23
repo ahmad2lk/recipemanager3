@@ -1,0 +1,20 @@
+.nav-item {
+  list-style: none;
+  margin-bottom: 24px;
+
+  .nav-link {
+    display: block;
+    padding: 15px;
+    background-color: #2a0707;
+    border: 8px solid #ccc;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #030303;
+    transition: background-color 0.3s;
+    background-color: rgba(255, 236, 209, 0.2);
+    font-weight: bold;
+    &:hover {
+      background-color: #e9ecef;
+    }
+  }
+}

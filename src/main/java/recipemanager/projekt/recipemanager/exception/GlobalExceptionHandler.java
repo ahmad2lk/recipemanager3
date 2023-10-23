@@ -46,7 +46,7 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * Behandelt die Ausnahme, wenn ein Zutatenschritt nicht gefunden wurde.
+     * Behandelt die Ausnahme, wenn eine Zutat schritt nicht gefunden wurde.
      *
      * @param ex Die Ausnahme vom Typ IngredientStepNotFoundException.
      * @return Eine ResponseEntity mit dem HTTP-Status "Nicht gefunden" und der Ausnahmemeldung als Antwortkörper.

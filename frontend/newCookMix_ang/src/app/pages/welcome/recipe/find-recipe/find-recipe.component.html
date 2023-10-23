@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="success-message-panel" *ngIf="message">
+    <div class="success-icon">&#10004;</div>
+    <div class="success-message">{{ message }}</div>
+  </div>
+
+  <div class="form-group">
+    <label for="recipeId">Recipe ID</label>
+    <input id="recipeId" name="recipeId" type="number" [(ngModel)]="recipeId">
+    <button type="button" (click)="fetchRecipeById()">Fetch Recipe</button>
+  </div>
+
+  <div class="recipe-details" *ngIf="recipe">
+    <h2>Updated Recipe Details</h2>
+    <p><strong>Id:</strong> {{ recipe.id }}</p>
+    <p><strong>Designation:</strong> {{ recipe.designation }}</p>
+    <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+    <p><strong>Steps:</strong> {{ recipe.steps }}</p>
+  </div>
+</div>

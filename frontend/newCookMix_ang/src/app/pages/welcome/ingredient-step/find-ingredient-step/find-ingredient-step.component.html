@@ -1,0 +1,15 @@
+<div class="find-ingredient-step">
+  <h2>Find Ingredient Step</h2>
+  <div class="input-container">
+    <label for="ingredientStepId">Enter Ingredient Step ID:</label>
+    <input type="number" id="ingredientStepId" [(ngModel)]="ingredientStepId">
+    <button (click)="findIngredientStepById(ingredientStepId)">Find</button>
+  </div>
+  <div *ngIf="selectedIngredientStep" class="ingredient-step-details">
+    <h3>Ingredient Step Details</h3>
+    <p><strong>ID:</strong> {{ selectedIngredientStep.id }}</p>
+    <strong>Quantity:</strong> {{ selectedIngredientStep.quantity }} {{ selectedIngredientStep.unit }}<br>
+    <strong>Presentation:</strong> {{ selectedIngredientStep.presentation }}
+  </div>
+  <p>{{ message }}</p>
+</div>

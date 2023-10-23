@@ -1,0 +1,37 @@
+<div class="add-ingredient-step">
+  <h2>Add Ingredient Step</h2>
+  <div class="form-container">
+    <div class="form-group">
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" [(ngModel)]="newIngredientStep.quantity">
+    </div>
+    <div class="form-group">
+      <label for="unit">Unit:</label>
+      <input type="text" id="unit" [(ngModel)]="newIngredientStep.unit">
+    </div>
+    <div class="form-group">
+      <label for="presentation">Presentation:</label>
+      <input type="text" id="presentation" [(ngModel)]="newIngredientStep.presentation">
+    </div>
+
+    <div class="form-group">
+
+      <label for="ingredientId" >Ingredient ID</label>
+      <input id="ingredientId" name="ingredientId" required type="number" [(ngModel)]="newIngredientStep.ingredient.id">
+    </div>
+
+    <div class="form-group">
+
+    <label for="stepId">Step ID</label>
+    <input id="stepId" name="stepId" required type="number" [(ngModel)]="newIngredientStep.step.id">
+  </div>
+    <div class="form-group">
+
+      <label for="foodId">Food ID</label>
+      <input id="foodId" name="stepId" required type="number" [(ngModel)]="newIngredientStep.food.id">
+    </div>
+
+    <button (click)="addNewIngredientStep()">Add Step</button>
+  </div>
+  <p class="message">{{ message }}</p>
+</div>

@@ -1,0 +1,69 @@
+
+.common-card-styles {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: space-around;
+  alignment-baseline: auto;
+  scale: unset;
+  padding: 8px;
+
+
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+div {
+
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: space-around;
+  alignment-baseline: auto;
+  scale: unset;
+  padding: 8px;
+
+
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.step-list {
+
+  display: flex;
+  overflow-y: auto;
+  width: 800px;
+  max-height: 800vh;
+  alignment-baseline: auto;
+}
+
+.step-card {
+  background-color: #a89f9f;
+  color: #3d413e;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  margin: 8px;
+  width: 300px;
+
+
+  max-height: 800px;
+  overflow-y: auto;
+}
+
+.step-card-content {
+  @extend .common-card-styles;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+p {
+  font-size: 16px;
+  color: #555;
+}

@@ -1,0 +1,63 @@
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  .search-panel {
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    form {
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      button[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .result-panel {
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    .food-details {
+      margin-bottom: 10px;
+      p {
+        margin: 5px 0;
+      }
+    }
+
+    .message {
+      font-weight: bold;
+      color: #4caf50;
+    }
+  }
+}

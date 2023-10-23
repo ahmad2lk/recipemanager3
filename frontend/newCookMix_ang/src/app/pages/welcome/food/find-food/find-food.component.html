@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="search-panel">
+    <h2>Find Food</h2>
+    <form (ngSubmit)="findFoodById()">
+      <div class="form-group">
+        <label for="foodId">Food ID</label>
+        <input
+          id="foodId"
+          name="foodId"
+          required
+          type="number"
+          [(ngModel)]="foodId"
+        >
+      </div>
+      <button type="submit">Find Food</button>
+    </form>
+  </div>
+
+  <div class="result-panel" *ngIf="selectedFood">
+    <h2>Found Food Details</h2>
+    <div class="food-details">
+      <p><strong>ID:</strong> {{ selectedFood.id }}</p>
+      <p><strong>Consistency:</strong> {{ selectedFood.consistency }}</p>
+      <p><strong>Unit:</strong> {{ selectedFood.unit }}</p>
+    </div>
+    <div class="message">{{ message }}</div>
+  </div>
+</div>
